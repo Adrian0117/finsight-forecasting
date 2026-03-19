@@ -224,7 +224,7 @@ I'm still learning and there's always room for improvement. If you spot anything
 
 Feel free to open a [GitHub Issue](https://github.com/Adrian0117/finsight-forecasting/issues) or reach out directly:
 
-📧 jiarongadrian@gmail.com
+📧 8acwolf8@gmail.com
 
 ---
 
