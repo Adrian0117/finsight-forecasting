@@ -216,6 +216,18 @@ After running `data_pipeline.py`:
 
 ---
 
+## Feedback & Discussion
+
+This project was built as a portfolio piece to demonstrate end-to-end ML engineering across financial forecasting use cases.
+
+I'm still learning and there's always room for improvement. If you spot anything that could be done better — whether it's modelling decisions, feature engineering, code quality, or business logic — I'd genuinely love to hear from you.
+
+Feel free to open a [GitHub Issue](https://github.com/Adrian0117/finsight-forecasting/issues) or reach out directly:
+
+📧 jiarongadrian@gmail.com
+
+---
+
 ## License
 
 MIT License — free to use and adapt.
