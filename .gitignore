@@ -23,7 +23,7 @@ __pycache__/
 Thumbs.db
 
 # Model files (optional — comment out if you want to push models)
-models/
+# models/
 
 # Environment variables
 .env
