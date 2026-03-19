@@ -36,11 +36,11 @@ The dashboard has 5 tabs — one project overview and one per module — with li
 
 Binary classification on `loan_status` → Fully Paid (0) vs Charged Off (1).
 
-| Model | AUC-ROC | Charged Off Recall | Charged Off F1 |
-|---|---|---|---|
-| Logistic Regression | 0.6597 | 0.53 | 0.38 |
-| Random Forest | 0.6831 | 0.28 | 0.31 |
-| **XGBoost** ✓ | **0.7168** | **0.46** | **0.42** |
+| Model               | AUC-ROC    | Charged Off Recall | Charged Off F1 |
+| ------------------- | ---------- | ------------------ | -------------- |
+| Logistic Regression | 0.6597     | 0.53               | 0.38           |
+| Random Forest       | 0.6831     | 0.28               | 0.31           |
+| **XGBoost** ✓       | **0.7168** | **0.46**           | **0.42**       |
 
 - Dataset: 1,344,936 loans / 20% default rate
 - Class imbalance handled with SMOTE (80/20 → 50/50 after resampling)
@@ -53,11 +53,11 @@ Binary classification on `loan_status` → Fully Paid (0) vs Charged Off (1).
 
 Churn label engineered from repayment behaviour — borrowers who repaid in less than 85% of their loan term were classified as retained; others as churned.
 
-| Model | AUC-ROC | Churned Recall | Churned F1 |
-|---|---|---|---|
-| Logistic Regression | 0.7823 | 0.76 | 0.59 |
-| Random Forest | 0.7906 | 0.88 | 0.60 |
-| **XGBoost** ✓ | **0.8139** | **0.92** | **0.62** |
+| Model               | AUC-ROC    | Churned Recall | Churned F1 |
+| ------------------- | ---------- | -------------- | ---------- |
+| Logistic Regression | 0.7823     | 0.76           | 0.59       |
+| Random Forest       | 0.7906     | 0.88           | 0.60       |
+| **XGBoost** ✓       | **0.8139** | **0.92**       | **0.62**   |
 
 - Dataset: 1,076,448 fully paid loans / 28.5% churn rate
 - Class imbalance handled with `scale_pos_weight`
@@ -71,11 +71,11 @@ Transaction-level data aggregated into a monthly time series (139 months, 2007�
 
 Test period: 2015 (stable growth phase, avoiding the 2016 platform disruption).
 
-| Model | RMSE (USD M) | MAPE |
-|---|---|---|
-| **Linear Regression** ✓ | **10.42** | **1.92%** |
-| XGBoost | 73.07 | 10.30% |
-| Prophet | 207.29 | 29.87% |
+| Model                   | RMSE (USD M) | MAPE      |
+| ----------------------- | ------------ | --------- |
+| **Linear Regression** ✓ | **10.42**    | **1.92%** |
+| XGBoost                 | 73.07        | 10.30%    |
+| Prophet                 | 207.29       | 29.87%    |
 
 - Linear Regression won because the 2008–2015 trend was approximately linear
 - Prophet decomposed trend + yearly seasonality components
@@ -89,11 +89,11 @@ Separate model trained per grade (A, B, C, D, E) with lag features and rolling a
 
 **MAPE (%) by Model and Grade — lower is better:**
 
-| Model | Grade A | Grade B | Grade C | Grade D | Grade E |
-|---|---|---|---|---|---|
-| **Linear Regression** ✓ | **2.72** | **4.97** | **5.03** | 13.10 | **8.73** |
-| Random Forest | 33.42 | 26.56 | 20.96 | 14.35 | 20.99 |
-| XGBoost | 18.03 | 12.33 | 12.64 | **8.55** ✓ | 19.45 |
+| Model                   | Grade A  | Grade B  | Grade C  | Grade D    | Grade E  |
+| ----------------------- | -------- | -------- | -------- | ---------- | -------- |
+| **Linear Regression** ✓ | **2.72** | **4.97** | **5.03** | 13.10      | **8.73** |
+| Random Forest           | 33.42    | 26.56    | 20.96    | 14.35      | 20.99    |
+| XGBoost                 | 18.03    | 12.33    | 12.64    | **8.55** ✓ | 19.45    |
 
 - Linear Regression was champion for 4 out of 5 grades
 - XGBoost only won on Grade D — highest-risk segment with most volatile demand
@@ -141,6 +141,7 @@ finsight-forecasting/
 ├── dashboard/
 │   └── app.py
 └── reports/
+    ├── model_comparison.md
     ├── module1_roc_curve.png
     ├── module1_confusion_matrix.png
     ├── module1_shap.png
@@ -190,16 +191,16 @@ streamlit run dashboard/app.py
 
 ## Tech Stack
 
-| Category | Tools |
-|---|---|
-| Data processing | Pandas, NumPy |
-| Machine learning | Scikit-learn, XGBoost |
-| Imbalanced data | imbalanced-learn (SMOTE) |
-| Time series | Facebook Prophet |
-| Visualisation | Matplotlib, Seaborn |
-| Dashboard | Streamlit |
-| Model persistence | Joblib |
-| Environment | Python 3.10, venv |
+| Category          | Tools                    |
+| ----------------- | ------------------------ |
+| Data processing   | Pandas, NumPy            |
+| Machine learning  | Scikit-learn, XGBoost    |
+| Imbalanced data   | imbalanced-learn (SMOTE) |
+| Time series       | Facebook Prophet         |
+| Visualisation     | Matplotlib, Seaborn      |
+| Dashboard         | Streamlit                |
+| Model persistence | Joblib                   |
+| Environment       | Python 3.10, venv        |
 
 ---
 
@@ -210,6 +211,7 @@ streamlit run dashboard/app.py
 Download `accepted_2007_to_2018Q4.csv` and place it in `data/raw/`. The rejected loans CSV is not used — it lacks the loan outcome data required for all four modules.
 
 After running `data_pipeline.py`:
+
 - Raw: 2,260,701 rows × 151 columns
 - Cleaned: 1,344,936 rows × 96 columns
 - Dropped: 58 high-null columns, 374 rows with critical missing values
